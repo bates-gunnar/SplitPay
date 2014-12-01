@@ -195,4 +195,65 @@ public class ViewGroupLogic {
 		input.close();
 		return nextMember;
 	}
+	
+	public String setFirstBill(String group) throws FileNotFoundException {
+		File file = new File("currentUser.txt");
+		Scanner inputFile = new Scanner(file);
+		user = inputFile.nextLine();
+		inputFile.close();
+		
+		String bill = "";
+		File billFile = new File(user + group + "Bills.txt");
+
+		if(billFile.exists()) {		
+			Scanner searchBills = new Scanner(billFile);
+			if(searchBills.hasNext()) {
+				bill = searchBills.nextLine();
+			}
+			
+			else {
+				bill = "No Bill";
+			}
+			searchBills.close();
+		}
+		
+		else{
+			bill = "No Bill";
+		}
+		return bill;
+	}
+	
+	public String setOtherBills(String group, String previousBill) throws FileNotFoundException {
+		File file = new File("currentUser.txt");
+		Scanner inputFile = new Scanner(file);
+		user = inputFile.nextLine();
+		inputFile.close();
+		
+		String bill = "";
+		File billFile = new File(user + group + "Bills.txt");
+		
+		if(billFile.exists()) {
+			Scanner searchBills = new Scanner(billFile);
+			while(searchBills.hasNext()) {
+				bill = searchBills.nextLine();
+				if(bill.matches(previousBill)) {
+					if(searchBills.hasNext()) {
+						bill = searchBills.nextLine();
+						break;
+					}
+					
+					else{
+						break;
+					}
+				}
+				
+				else {
+					bill = "";
+				}
+			}
+			searchBills.close();
+		}
+		return bill;
+	}
+		
 }

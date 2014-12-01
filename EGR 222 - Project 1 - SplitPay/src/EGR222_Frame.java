@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.CardLayout;
@@ -311,6 +312,7 @@ public class EGR222_Frame extends JFrame {
 		setContentPane(pnlPostBill);
 		pnlPostBill.show();
 		((PostBill) pnlPostBill).moveButton();
+		((PostBill) pnlPostBill).apology();
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -320,6 +322,7 @@ public class EGR222_Frame extends JFrame {
 		((PaymentHistory) pnlPaymentHistory).moveButton();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void setPayOtherMembers() {
 		setContentPane(pnlPayOtherMembers);
 		pnlPayOtherMembers.show();

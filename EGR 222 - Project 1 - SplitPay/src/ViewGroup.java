@@ -40,12 +40,18 @@ public class ViewGroup extends JPanel {
 	private String member4 = "";
 	private String member5 = "";
 	private String member6 = "";
+	private String bill1 = "";
+	private String bill2 = "";
+	private String bill3 = "";
 	private JLabel lblMember1 = new JLabel("No Member");
 	private JLabel lblMember2 = new JLabel("No Member");
 	private JLabel lblMember3 = new JLabel("No Member");
 	private JLabel lblMember4 = new JLabel("No Member");
 	private JLabel lblMember5 = new JLabel("No Member");
 	private JLabel lblMember6 = new JLabel("No Member");
+	private JLabel lblBill1 = new JLabel("No Bill");
+	private JLabel lblBill2 = new JLabel("No Bill");
+	private JLabel lblBill3 = new JLabel("No Bill");
 	
 	public ViewGroup() {
 		setLayout(null);
@@ -97,10 +103,9 @@ public class ViewGroup extends JPanel {
 		lblMember6.setVisible(false);
 		add(lblMember6);
 		
-		JLabel lblNoBills = new JLabel("No Bills");
-		lblNoBills.setFont(new Font("Verdana", Font.PLAIN, 12));
-		lblNoBills.setBounds(336, 100, 86, 14);
-		add(lblNoBills);
+		lblBill1.setFont(new Font("Verdana", Font.PLAIN, 12));
+		lblBill1.setBounds(336, 99, 86, 14);
+		add(lblBill1);
 		
 		viewGroupsName1.setFont(new Font("Verdana", Font.PLAIN, 13));
 		viewGroupsName1.setForeground(Color.BLUE);
@@ -110,6 +115,10 @@ public class ViewGroup extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setGroupOneMembers();
+				setGroupOneBills();
+				viewGroupsName1.setForeground(Color.RED);
+				viewGroupsName2.setForeground(Color.BLUE);
+				viewGroupsName3.setForeground(Color.BLUE);
 			}
 			
 			@Override
@@ -128,6 +137,10 @@ public class ViewGroup extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent f) {
 				setGroupTwoMembers();
+				setGroupTwoBills();
+				viewGroupsName1.setForeground(Color.BLUE);
+				viewGroupsName2.setForeground(Color.RED);
+				viewGroupsName3.setForeground(Color.BLUE);
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -145,6 +158,10 @@ public class ViewGroup extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent g) {
 				setGroupThreeMembers();
+				setGroupThreeBills();
+				viewGroupsName1.setForeground(Color.BLUE);
+				viewGroupsName2.setForeground(Color.BLUE);
+				viewGroupsName3.setForeground(Color.RED);
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -216,10 +233,18 @@ public class ViewGroup extends JPanel {
 		lblOutstandingBills.setBounds(296, 73, 137, 24);
 		add(lblOutstandingBills);
 		
-		JLabel label = new JLabel("*If GROUP INFO does not appear, please select GROUP");
-		label.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 11));
-		label.setBounds(63, 309, 358, 14);
-		add(label);
+		JLabel lblifNewGroup = new JLabel("*If new GROUP INFO does not appear, please re-select GROUP");
+		lblifNewGroup.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 11));
+		lblifNewGroup.setBounds(41, 309, 402, 14);
+		add(lblifNewGroup);
+		
+		lblBill2.setFont(new Font("Verdana", Font.PLAIN, 12));
+		lblBill2.setBounds(336, 127, 86, 14);
+		add(lblBill2);
+		
+		lblBill3.setFont(new Font("Verdana", Font.PLAIN, 12));
+		lblBill3.setBounds(336, 154, 86, 14);
+		add(lblBill3);
 		
 		
 	}
@@ -538,6 +563,132 @@ public class ViewGroup extends JPanel {
 		if(!member2.matches(groupSeparation) & !member3.matches(groupSeparation) & !member4.matches(groupSeparation) & 
 		   !member5.matches(groupSeparation) & member6.matches(groupSeparation)) {
 			lblMember6.setVisible(false);
+		}
+	}
+	
+	public void setGroupOneBills() {
+		try {
+			bill1 = information.setFirstBill(groupOne);
+			lblBill1.setText(bill1);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			bill2 = information.setOtherBills(groupOne, bill1);
+			lblBill2.setText(bill2);
+			lblBill2.setVisible(true);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			bill3 = information.setOtherBills(groupOne, bill2);
+			lblBill3.setText(bill3);
+			lblBill3.setVisible(true);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(bill1.matches("No Bill")) {
+			lblBill2.setVisible(false);
+			lblBill3.setVisible(false);
+		}
+		
+		if(bill2.matches(bill1)) {
+			lblBill2.setVisible(false);
+			lblBill3.setVisible(false);
+		}
+		
+		if(bill3.matches(bill2)) {
+			lblBill3.setVisible(false);
+		}
+	}
+	
+	public void setGroupTwoBills() {
+		try {
+			bill1 = information.setFirstBill(groupTwo);
+			lblBill1.setText(bill1);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			bill2 = information.setOtherBills(groupTwo, bill1);
+			lblBill2.setText(bill2);
+			lblBill2.setVisible(true);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			bill3 = information.setOtherBills(groupTwo, bill2);
+			lblBill3.setText(bill3);
+			lblBill3.setVisible(true);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(bill1.matches("No Bill")) {
+			lblBill2.setVisible(false);
+			lblBill3.setVisible(false);
+		}
+		
+		if(bill2.matches(bill1)) {
+			lblBill2.setVisible(false);
+			lblBill3.setVisible(false);
+		}
+		
+		if(bill3.matches(bill2)) {
+			lblBill3.setVisible(false);
+		}
+	}
+	
+	public void setGroupThreeBills() {
+		try {
+			bill1 = information.setFirstBill(groupThree);
+			lblBill1.setText(bill1);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			bill2 = information.setOtherBills(groupThree, bill1);
+			lblBill2.setText(bill2);
+			lblBill2.setVisible(true);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			bill3 = information.setOtherBills(groupThree, bill2);
+			lblBill3.setText(bill3);
+			lblBill3.setVisible(true);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(bill1.matches("No Bill")) {
+			lblBill2.setVisible(false);
+			lblBill3.setVisible(false);
+		}
+		
+		if(bill2.matches(bill1)) {
+			lblBill2.setVisible(false);
+			lblBill3.setVisible(false);
+		}
+		
+		if(bill3.matches(bill2)) {
+			lblBill3.setVisible(false);
 		}
 	}
 }

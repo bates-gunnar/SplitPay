@@ -111,6 +111,9 @@ public class CreateGroupLogic {
 				
 					output.println(groupSeparation);
 					output.close();
+					
+					PrintWriter groupBillFile = new PrintWriter(user + groupName + "Bills.txt");
+					groupBillFile.close();
 					return true;
 				}
 				

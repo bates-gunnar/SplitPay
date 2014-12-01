@@ -43,9 +43,9 @@ public class CreateAccountLogic {
 				output.close();
 				
 				//FILE TO HOLD USER GROUP NAMES
-				File file = new File(user + "Groups.txt");
-				PrintWriter checkFile = new PrintWriter(file);
-				checkFile.close();
+				File groups = new File(user + "Groups.txt");
+				PrintWriter checkGroups = new PrintWriter(groups);
+				checkGroups.close();
 				
 				JOptionPane.showMessageDialog(null, "Account successfully created");
 				userPassAlong = user;
