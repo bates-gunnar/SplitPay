@@ -304,6 +304,7 @@ public class PostBill extends JPanel {
 				
 				else {
 					noGroupSelected();
+					comboGroupName.setSelectedItem(groupList[0]);
 				}
 			}
 		});
@@ -359,9 +360,8 @@ public class PostBill extends JPanel {
 						member6Total = Double.parseDouble(groupMember6.getText());
 					}
 					
-					if(total < (member1Total + member2Total + member3Total + member4Total + member5Total + member6Total)) {
-						JOptionPane.showMessageDialog(null, "Member debts are larger than the total by: $" + 
-						((member1Total + member2Total + member3Total + member4Total + member5Total + member6Total) - total) + 
+					if(total != (member1Total + member2Total + member3Total + member4Total + member5Total + member6Total)) {
+						JOptionPane.showMessageDialog(null, "Member debts are not equal to total debt" + 
 						". Please check your math.");
 						continueOn = "NO";
 					}
@@ -380,6 +380,7 @@ public class PostBill extends JPanel {
 						if(information.postABill(group, billName, member1, member2, member3, member4, member5, member6, 
 						   total, member1Total, member2Total, member3Total, member4Total, member5Total, member6Total) == true) {
 							noGroupSelected();
+							comboGroupName.setSelectedItem(groupList[0]);
 							EGR222_Frame parent = (EGR222_Frame) getTopLevelAncestor();
 							parent.setViewGroup();
 						}
@@ -429,7 +430,9 @@ public class PostBill extends JPanel {
 	
 	public void noGroupSelected() {
 		totalAmountToSplit.setText("");
+		billTitle.setText("");
 		billTitle.setEnabled(false);
+		
 		lblDollar1.setEnabled(false);
 		lblDollar2.setEnabled(false);
 		lblDollar3.setEnabled(false);
@@ -732,9 +735,10 @@ public class PostBill extends JPanel {
 	}
 	
 	public void apology() {
+		String newline = System.getProperty("line.separator");
 		JOptionPane.showMessageDialog(null, 
-		"We are sorry, but any groups created during this use of the "
-		+ "application are currently unable to appear immediately in your group selection box. "
+		"We are sorry, but any groups created during this use of the application" + newline
+		+ "are currently unable to appear immediately in your group selection box. " + newline
 		+ "Please re-start the application to in order to select your new group.");
 	}
 }

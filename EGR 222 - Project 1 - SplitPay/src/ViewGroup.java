@@ -71,7 +71,7 @@ public class ViewGroup extends JPanel {
 		ViewGroups.setFont(new Font("Verdana", Font.BOLD, 14));
 		ViewGroups.setText("My Groups");
 		ViewGroups.setHorizontalAlignment(SwingConstants.CENTER);
-		ViewGroups.setBounds(10, 93, 99, 24);
+		ViewGroups.setBounds(10, 76, 99, 19);
 		add(ViewGroups);
 		
 		lblMember1.setFont(new Font("Verdana", Font.PLAIN, 12));
@@ -126,7 +126,7 @@ public class ViewGroup extends JPanel {
 				viewGroupsName1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 		});
-		viewGroupsName1.setBounds(10, 117, 99, 33);
+		viewGroupsName1.setBounds(10, 100, 99, 33);
 		add(viewGroupsName1);
 		
 		
@@ -147,7 +147,7 @@ public class ViewGroup extends JPanel {
 				viewGroupsName2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 		});
-		viewGroupsName2.setBounds(10, 161, 99, 39);
+		viewGroupsName2.setBounds(10, 144, 99, 39);
 		add(viewGroupsName2);
 		
 		
@@ -168,7 +168,7 @@ public class ViewGroup extends JPanel {
 				viewGroupsName3.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 		});
-		viewGroupsName3.setBounds(10, 210, 99, 33);
+		viewGroupsName3.setBounds(10, 193, 99, 33);
 		add(viewGroupsName3);
 		
 		JPanel panel = new JPanel();

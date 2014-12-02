@@ -36,8 +36,8 @@ public class EGR222_Frame extends JFrame {
 	private JPanel pnlPostBill = new PostBill();
 	private JPanel pnlPaymentHistory = new PaymentHistory();
 	private JPanel pnlPayOtherMembers = new PayOtherMembers();
-	private JPanel pnlGroupHistory = new GroupHistory();
-	//private JPanel pnlShowAllDebts = new ShowAllDebts();
+	private JPanel pnlSettleDebt = new SettleDebt();
+	
 	
 	//************************************************************************************************************************************************
 	//Initialize text fields for the side navigation panel
@@ -49,9 +49,8 @@ public class EGR222_Frame extends JFrame {
 	private JTextField toViewGroup = new JTextField();
 	private JTextField toPostBill = new JTextField();
 	private JTextField toPayOtherMembers = new JTextField();
-	private JTextField toShowAllDebts = new JTextField();
 	private JTextField logout = new JTextField();
-	private JTextField toGroupHistory = new JTextField();
+	private JTextField toSettleDebt = new JTextField();
 
 	/**
 	 * Launch the application.
@@ -149,19 +148,24 @@ public class EGR222_Frame extends JFrame {
 		});
 		sidePanel.add(toViewGroup);
 		
-		toGroupHistory.setText("Group History");
-		toGroupHistory.setEditable(false);
-		toGroupHistory.setBackground(Color.WHITE);
-		toGroupHistory.setColumns(10);
-		toGroupHistory.addMouseListener(new MouseAdapter() {
+		toSettleDebt.setText("Settle Debt");
+		toSettleDebt.setEditable(false);
+		toSettleDebt.setBackground(Color.WHITE);
+		toSettleDebt.setColumns(10);
+		toSettleDebt.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				sidePanel.setBounds(-100, 0, 100, 361);
-      			setGroupHistory();
+      			try {
+					setSettleDebt();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
       			panelRevealCount++;
 			}
 		});
-		sidePanel.add(toGroupHistory);
+		sidePanel.add(toSettleDebt);
 				
 		toPostBill.setEditable(false);
 		toPostBill.setText("Post a Bill");
@@ -208,19 +212,7 @@ public class EGR222_Frame extends JFrame {
 		});
 		sidePanel.add(toPayOtherMembers);
 				
-		toShowAllDebts.setBackground(Color.WHITE);
-		toShowAllDebts.setText("Show All Debts");
-		toShowAllDebts.setEditable(false);
-		toShowAllDebts.setColumns(10);
-		toShowAllDebts.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
 				
-			}
-		});
-		sidePanel.add(toShowAllDebts);
-		
-		
 		logout.setBackground(Color.WHITE);
 		logout.setEditable(false);
 		logout.setText("Logout");
@@ -240,11 +232,11 @@ public class EGR222_Frame extends JFrame {
 		screenControl.add(pnlHomePage);
 		screenControl.add(pnlCreateGroup);
 		screenControl.add(pnlViewGroup);
-		screenControl.add(pnlGroupHistory);
 		screenControl.add(pnlPostBill);
+		screenControl.add(pnlSettleDebt);
 		screenControl.add(pnlPaymentHistory);
 		screenControl.add(pnlPayOtherMembers);
-		//screenControl.add(pnlShowAllDebts);
+		
 		
 		
 		
@@ -301,10 +293,11 @@ public class EGR222_Frame extends JFrame {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void setGroupHistory() {
-		setContentPane(pnlGroupHistory);
-		pnlGroupHistory.show();
-		((GroupHistory) pnlGroupHistory).moveButton();
+	public void setSettleDebt() throws FileNotFoundException {
+		setContentPane(pnlSettleDebt);
+		pnlSettleDebt.show();
+		((SettleDebt) pnlSettleDebt).moveButton();
+		((SettleDebt) pnlSettleDebt).setVisibleGroups();
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -329,8 +322,7 @@ public class EGR222_Frame extends JFrame {
 		((PayOtherMembers) pnlPayOtherMembers).moveButton();
 	}
 	
-	//public void setShowAllDebts()
-	
+		
 	//************************************************************************************************************************************************
 	//Function to logout of the program and return to the Sign In page
 	

@@ -80,6 +80,8 @@ public class CreateGroup extends JPanel {
 		CreateGroupName.setColumns(10);
 		
 		CreateGroupMember1 = new JTextField();
+		CreateGroupMember1.setBackground(Color.BLACK);
+		CreateGroupMember1.setEditable(false);
 		CreateGroupMember1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent f) {
@@ -87,9 +89,9 @@ public class CreateGroup extends JPanel {
 				CreateGroupMember1.setForeground(Color.BLACK);
 			}
 		});
-		CreateGroupMember1.setForeground(Color.GRAY);
+		CreateGroupMember1.setForeground(Color.WHITE);
 		CreateGroupMember1.setFont(new Font("Verdana", Font.PLAIN, 12));
-		CreateGroupMember1.setText("Member's name...");
+		CreateGroupMember1.setText("Me");
 		CreateGroupMember1.setBounds(43, 157, 122, 20);
 		add(CreateGroupMember1);
 		CreateGroupMember1.setColumns(10);
